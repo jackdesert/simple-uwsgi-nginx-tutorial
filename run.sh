@@ -14,4 +14,9 @@
 #sudo uwsgi --enable-threads --plugin=python3 -s /tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid www-data --gid www-data
 
 # Add -H flag
-sudo -H uwsgi --enable-threads --plugin=python3 -s /tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid www-data --gid www-data
+#sudo -H uwsgi --enable-threads --plugin=python3 -s /tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid www-data --gid www-data
+
+
+# Change to earlier version (from "app" to "application")
+sudo uwsgi --enable-threads --plugin=python3 -s tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --gid ubuntu
+
