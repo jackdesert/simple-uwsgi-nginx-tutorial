@@ -29,3 +29,18 @@ Simple
 
     # If you want to remove the setfacl settings, just `setfacl -b tmp`
 
+
+Config Files
+------------
+
+    cd /etc/systemd/system
+    sudo ln -s ~/simple/config/emperor.uwsgi.service
+
+
+    sudo mkdir -p /etc/uwsgi/vassals
+
+    cd /etc/uwsgi
+    sudo ln -s ~/simple/config/emperor.ini
+
+    cd /etc/uwsgi/vassals
+    sudo ln -s ~/simple/config/simple.ini
