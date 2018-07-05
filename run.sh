@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# This is a file of various uwsgi invocation tried in the process of finding one
+# that works, and works reliably
+
 #sudo uwsgi --plugin=python3 -s /tmp/simple.sock --manage-script-name --mount /=wsgi:app --uid www-data --gid www-data
 
 
@@ -35,6 +38,10 @@
 
 
 # Running as self (ubuntu) with setfacl USER rwx 
-uwsgi --chmod-socket=020 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application 
+#uwsgi --chmod-socket=020 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application 
 
+
+
+# Masquerade as ubuntu:www-data with chmod-socket=020
+sudo uwsgi --chmod-socket=020 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --git www-data
 
