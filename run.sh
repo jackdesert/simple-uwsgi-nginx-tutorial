@@ -18,5 +18,23 @@
 
 
 # Change to earlier version (from "app" to "application")
-sudo uwsgi --enable-threads --plugin=python3 -s tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --gid ubuntu
+#sudo uwsgi --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --gid ubuntu
+
+# Add --chmod-socket !! Works
+#sudo uwsgi --chmod-socket=777 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --gid ubuntu
+
+
+# Reduced chmod to 220 !! Works  (Also works with 020...don't know why)
+#sudo uwsgi --chmod-socket=220 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --gid ubuntu
+
+# Running as self (ubuntu) !! Works, but open to anyone!!
+#uwsgi --chmod-socket=666 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application 
+
+# Running as self (ubuntu) with setfacl USER rwx   !! Works!
+#uwsgi --chmod-socket=660 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application 
+
+
+# Running as self (ubuntu) with setfacl USER rwx 
+uwsgi --chmod-socket=020 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application 
+
 
