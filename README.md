@@ -1,46 +1,11 @@
-Simple
-======
+Simple uWSGI Nginx Emperor Tutorial
+===================================
 
-    sudo apt install uwsgi-core uwsgi-plugin-python3 python3-pip htop nginx
+This source code is to be used with the blog posts at:
 
-    pip3 install flask
-    > Installing collected packages: click, MarkupSafe, Jinja2, Werkzeug, itsdangerous, flask
-
-    $ which flask
-    /home/ubuntu/.local/bin/flask
-
-
-    cd simple
-    python3 wsgi.py # this verifies that some of the pieces fire
-
-    $ curl localhost:5000
-    <h1 style='color:blue'>Hello There!</h1>
-
-    cd /etc/nginx/sites-enabled/
-    sudo rm default
-    sudo ln -s /home/ubuntu/simple/simple-nginx.conf
-    sudo nginx -s reload
-
-    mkdir tmp
-    #setfacl -Rm g:users:rwX,d:g:users:rwX ~/simple/tmp
-    #setfacl -Rdm u:www-data:rw ~/simple/tmp
-    #setfacl -Rm d:u:www-data:rw,u:www-data:rwx ~/simple/tmp
-    setfacl -Rm d:u:www-data:rwx,u:www-data:rwx ~/simple/tmp
-
-    # If you want to remove the setfacl settings, just `setfacl -b tmp`
+  * [Part 1](http://blog.jackdesert.com/common-hurdles-to-deploying-uwsgi-apps-part-1)
+  * [Part 2](http://blog.jackdesert.com/common-hurdles-to-deploying-uwsgi-apps-part-2)
+  * [Part 3](http://blog.jackdesert.com/common-hurdles-to-deploying-uwsgi-apps-part-3)
+  * [Part 4](http://blog.jackdesert.com/common-hurdles-to-deploying-uwsgi-apps-part-4)
 
 
-Config Files
-------------
-
-    cd /etc/systemd/system
-    sudo ln -s ~/simple/config/emperor.uwsgi.service
-
-
-    sudo mkdir -p /etc/uwsgi/vassals
-
-    cd /etc/uwsgi
-    sudo ln -s ~/simple/config/emperor.ini
-
-    cd /etc/uwsgi/vassals
-    sudo ln -s ~/simple/config/simple.ini
