@@ -43,5 +43,5 @@
 
 
 # Masquerade as ubuntu:www-data with chmod-socket=020
-sudo uwsgi --chmod-socket=020 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --git www-data
+sudo uwsgi --chmod-socket=020 --enable-threads --plugin=python3 -s ~/simple/tmp/simple.sock --manage-script-name --mount /=wsgi:application --uid ubuntu --gid www-data
 
